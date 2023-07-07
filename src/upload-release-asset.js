@@ -1,5 +1,4 @@
 const core = require('@actions/core');
-const { context } = require('@actions/github');
 const gh = require('@actions/github');
 const fs = require('fs');
 
