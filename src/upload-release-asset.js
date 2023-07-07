@@ -10,12 +10,6 @@ async function run() {
 
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const id = core.getInput('id', { required: true });
-    
-    const uploadUrl = (await github.rest.repos.getRelease({
-      owner: context.repo.owner,
-      repo: context.repo.repo,
-      release_id: id
-    })).data.upload_url;
 
     const assetPath = core.getInput('asset_path', { required: true });
     const assetName = core.getInput('asset_name', { required: true });
@@ -31,7 +25,7 @@ async function run() {
     // API Documentation: https://developer.github.com/v3/repos/releases/#upload-a-release-asset
     // Octokit Documentation: https://octokit.github.io/rest.js/#octokit-routes-repos-upload-release-asset
     const uploadAssetResponse = await github.rest.repos.uploadReleaseAsset({
-      url: uploadUrl,
+      release_id: id,
       headers,
       name: assetName,
       file: fs.readFileSync(assetPath)
