@@ -9619,7 +9619,6 @@ function wrappy (fn, cb) {
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const core = __nccwpck_require__(7733);
-const { context } = __nccwpck_require__(3695);
 const gh = __nccwpck_require__(3695);
 const fs = __nccwpck_require__(7147);
 
@@ -9659,6 +9658,7 @@ async function run() {
     // Set the output variable for use by other actions: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     core.setOutput('browser_download_url', browserDownloadUrl);
   } catch (error) {
+    console.log(error);
     core.setFailed(error.message);
   }
 }
