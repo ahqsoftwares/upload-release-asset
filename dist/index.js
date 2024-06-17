@@ -29227,7 +29227,7 @@ async function run() {
       release_id: id,
       headers,
       name: assetName,
-      file: Uint8Array.from(fs.readFileSync(assetPath)),
+      file: Array.from(Uint8Array.from(fs.readFileSync(assetPath))),
     });
 
     // Get the browser_download_url for the uploaded release asset from the response
